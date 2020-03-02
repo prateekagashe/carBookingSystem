@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+   <h1>Payment Page</h1>
+   <form class="" action="{{url_for('confirmation')}}" method = "post">
+      <script
+         src="https://checkout.stripe.com/checkout.js"
+         class="stripe-button"
+         data-key="{{public_key}}"
+         data-amount="session['driver_detail'][7]"
+         data-name="Final Charges"
+         data-description="cab4all"
+         data-locale="auto"
+         data-zip-code="true"
+         ></script>
+   </form>
+</div>

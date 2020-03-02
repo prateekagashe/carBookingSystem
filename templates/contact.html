@@ -1,0 +1,55 @@
+{% include 'header.html' %}
+{% block content %}
+{% endblock %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script type="text/javascript" src="{{url_for('static', filename= 'object.js')}}" ></script>
+<h2 style="text-align:center; margin-top:10px;">Please fill the following details to proceed</h2>
+<div class="card w-75 text-center " style="margin-left:12%; margin-top:2%; background-color:white;">
+   <div class="card-body" style="border:1px solid #A8A8A8;">
+      <form method="post">
+         <div class="form-row">
+            <div class="form-group col-md-6">
+               <label for="inputName">Name</label>
+               <input type="text" class="form-control" name="name" placeholder="Name" id="name" required>
+            </div>
+            <div class="form-group col-md-6">
+               <label for="inputEmail4">Email</label>
+               <input type="email" class="form-control" name="email" placeholder="Email Address" id="email" readonly   required>
+            </div>
+         </div>
+         <div class="form-row">
+            <div class="form-group col-md-6">
+               <label for="mobile">Mobile Number</label>
+               <input type="number" maxlength="10" class="form-control"  name="mobile" placeholder="Mobile Number" id="inputMobile" required>
+            </div>
+            <div class="form-group col-md-6">
+               <label for="time">PickUp Time</label>
+               <input type="time" name="time" class="form-control"   placeholder="time" id="time" required>
+            </div>
+         </div>
+         <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" maxlength="30"id="address" name="Address" placeholder="Address Line 1" required>
+         </div>
+         <div class="form-group">
+            <label for="inputlocality">Locality</label>
+            <input type="text" class="form-control" maxlength="20" id="locality" name="locality" placeholder="Locality/Nearby Place" required>
+         </div>
+         <div class="form-row">
+            <div class="form-group col-md-6">
+               <label for="inputCity">City</label>
+               <input type="text" class="form-control" placeholder="City" value="Bangalore" name="city" id="city" readonly>
+            </div>
+            <div class="form-group col-md-6">
+               <label for="state">State</label>
+               <input type="text" class="form-control" placeholder="State" value="Karnataka" name="state" id="state" readonly>
+            </div>
+         </div>
+         <button type="submit"  name="submit" value="customer_detail" class="btn btn-primary">Proceed to Payment</button>
+         <button type="button"  onclick="window.location.href='{{url_for('home')}}'" name="submit"   class="btn btn-warning">Cancel</button>
+      </form>
+   </div>
+</div>
+{% if user_detail %}
+<script>auto_fill('{{user_detail[1]}}', '{{user_detail[2]}}', '{{user_detail[4]}}', '{{user_detail[6]}}');</script>
+{% endif %}

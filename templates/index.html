@@ -1,0 +1,91 @@
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script type="text/javascript" src="{{url_for('static', filename= 'object.js')}}" ></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/style.css')}}">
+</head>
+<body>
+   {% include 'header.html' %}
+   {% block content %}
+   {% endblock %}
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+   {% for messages in messages %}
+   <div class="alert alert-danger w-75 " style="top: 19%; left:49.5%; transform: translate(-50%, -50%);position: absolute;" role="alert">{{messages}}</div>
+   {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <div class="card w-75 text-center " style="margin-left:12%; margin-top:5%; background-color:white;">
+      <h5 class="card-header" style="background-color:#484848; color:white; font-weight:bold;">Select a journey type</h5>
+      <div class="card-body" style="border:1px solid #A8A8A8;">
+         <div class="tab">
+            <button class="btn btn-outline-primary active checked btn btn-space" onclick="journeyType(event, 'OneWay')">One Way</button>
+            <button class="btn btn-outline-primary btn btn-space">Round Trip</button>
+            <button class="btn btn-outline-primary btn btn-space">Multi City</button>
+            <button class="btn btn-outline-primary btn btn-space">Airport Package</button>
+         </div>
+         <hr style="background-color:#585858;">
+         <form method="POST" style="" class="align-items-center font-weight-bold">
+            <div class="form-group row">
+               <div class="col-sm-4">
+                  <label for="staticSource" class=" col-form-label">Source:</label>
+               </div>
+               <div class="col-sm-6">
+                  <input type="text"  id="source" name="source" readonly class="form-control" value="Bangalore, Karnataka">
+                  <div class="error-shape-box w-fixed" id="sourcError" style="display:none;">Please Enter Correct Destination!</div>
+               </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-sm-4">
+                  <label for="staticDestination" class=" col-form-label">Destination:</label>
+               </div>
+               <div class="col-sm-6">
+                  <input name="destination" id="destination" placeholder="Select Destination" required onfocusout="check_city()" class="form-control" >
+                  <div class="error-shape-box w-fixed" id="errorSameCity" style="display:none;">Source and Destination should not be same!</div>
+                  <div class="error-shape-box w-fixed" id="error" style="display:none;">Please Enter Correct Destination!</div>
+               </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-sm-4">
+                  <label for="date" class=" col-form-label">Date</label>
+               </div>
+               <div class="col-sm-6">
+                  <input type="date" id="date" date-date-inline-picker="true" onkeydown="return false"  required name="date" placeholder="Select suitable date" class="form-control datepicker" >
+               </div>
+            </div>
+            <button type="submit" id="book" name="submit" value="book"   class="btn btn-outline-success " >Book</button>
+         </form>
+      </div>
+      <!--<form method="post" name="one_way">-->
+      <!--    <label>From:</label>-->
+      <!--    <input type="text" id="source" name="source" value="Bangalore, Karnataka" readonly>-->
+      <!--    <div class="error-shape-box w-fixed" id="error" style="display:none;">Source and Destination should not be same!</div>-->
+      <!--    <label>To:</label>-->
+      <!--    <input type="text" name="destination" id="destination" placeholder="Select Destination" onfocusout="check_city()"  >-->
+      <!--    <label>Date:</label>-->
+      <!--    <input type="date" id="date" date-date-inline-picker="true" name="date" placeholder="Select suitable date">-->
+      <!--    <button type="submit" name="submit" value="book" id="book">Book</button>-->
+      <!--</form>-->
+   </div>
+   </div>
+   </div>
+   <script>function activatePlaceSearch(){
+      var cityBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(25.341233, 68.289986),
+      new google.maps.LatLng(25.450715, 68.428345)
+      );
+
+          var options = {
+                       types: ['(cities)'],
+                       componentRestrictions: {country: 'in'}
+           };
+         var input = document.getElementById('destination');
+         var search = new google.maps.places.Autocomplete(input, options);
+      }
+   </script>
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD-yOrwFqzEOo0U1Fk4BpQvFYDywP-jz0&libraries=places&region=in&callback=activatePlaceSearch"></script>
+   <script type="text/javascript">
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementById('date').setAttribute('min', today)
+
+   </script>

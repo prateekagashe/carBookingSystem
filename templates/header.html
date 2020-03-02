@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+   <script src = 'https://kit.fontawesome.com/a076d05399.js'></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+         <h1 style="font-family:Arial black; margin-left:20px;">Cab For All</h1>
+      </a>
+      <a class="navbar-brand" href="/">    <i class="fas fa-car-side " style="font-size:48px; margin-left:750px; color:white;"></i></a>
+      {% if session['loggedin'] %}
+      <button class="btn btn-outline-light my-2 my-sm-0" onclick="window.location.href='{{url_for('logout')}}'" value="logout" type="submit">Logout</button>
+      {% endif %}
+   </nav>
+</html>

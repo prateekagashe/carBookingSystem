@@ -1,0 +1,25 @@
+
+.error-shape-box{
+
+     color:#fff;
+    background-color: #e82940;
+    margin-top: 0px;
+    display: none;
+    padding: 8px;
+    margin-top:6px;
+    position: relative;
+    border-radius: 2px;
+}
+.error-shape-box:before{
+
+	position: absolute;
+    left: 4%;
+    top: -6px;
+    width: 0;
+    height: 0;
+    content: '';
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #e82940;
+
+}

@@ -1,0 +1,23 @@
+{% include 'header.html' %}
+{% block content %}
+{% endblock %}
+<div class="card w-50" style=" text-align:center; top:50%; left:50%; margin-top:25%; transform: translate(-50%, -50%); color:white;">
+   <div class="card-body"  style="font-weight:800; background-color:tomato;">
+      <i>
+         <h2><STRONG>ThankYou for booking with us!!</STRONG></h2>
+      </i>
+      <h3>Booking Id: {{booking_detail[0]}}</h3>
+      <h3>Name: {{booking_detail[3]}}</h3>
+      <h3>Mobile: {{booking_detail[9]}}</h3>
+      <h3>PickUp Address: {{booking_detail[5]}}, {{booking_detail[6]}}</h3>
+      <h3>DropPoint: {{booking_detail[7]}}</h3>
+      <h3>PickUp Time: {{booking_detail[8]}}</h3>
+      <hr style="background:color:white;">
+      <h3><strong>Driver Details:</strong></h3>
+      <h3>Driver Name:{{driver[1]}}</h3>
+      <h3>Mobile:{{driver[2]}}</h3>
+   </div>
+   <div class="card-body" style="font-weight:800; border:1px solid grey">
+      <h5 style="color:black;"> For any queries feel free to reach out: 9988776633/9988667744 <br> or mail us:<br>customercare@c4all.com</h5>
+   </div>
+</div>
